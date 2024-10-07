@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://38gs7mi5cukh"]
+
+[ext_resource type="Texture2D" uid="uid://bhdpay1whyjj4" path="res://assets/rabbit.png" id="1_1k3df"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nfssc"]
+radius = 32.0156
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Rabbit" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_1k3df")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_nfssc")
