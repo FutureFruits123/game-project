@@ -1,16 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://38gs7mi5cukh"]
+[gd_scene load_steps=8 format=3 uid="uid://6vqwer0hmub8"]
 
 [ext_resource type="Texture2D" uid="uid://bhdpay1whyjj4" path="res://assets/rabbit.png" id="1_1k3df"]
+[ext_resource type="Script" path="res://objects/ArnebCheckLeft.gd" id="2_lfg76"]
+[ext_resource type="Script" path="res://objects/ArnebCheckRight.gd" id="3_o6eqq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nfssc"]
-radius = 32.0156
+[sub_resource type="GDScript" id="GDScript_mtbpp"]
+script/source = "extends Area2D
+
+var speed = 2.25
+var velocity = Vector2()
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	velocity = Vector2(-speed,0)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	translate(velocity)
+
+func _on_body_entered(body):
+	if body.has_method(\"move_back\"):
+		body.move_back(12, 318)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc6ea"]
+size = Vector2(22, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5gxe"]
+size = Vector2(258, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fh2y"]
+size = Vector2(258, 108.5)
 
 [node name="Area2D" type="Area2D"]
+script = SubResource("GDScript_mtbpp")
 
 [node name="Rabbit" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.075, 0.075)
 texture = ExtResource("1_1k3df")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
-shape = SubResource("CircleShape2D_nfssc")
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_dc6ea")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_lfg76")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(139, -41)
+shape = SubResource("RectangleShape2D_w5gxe")
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("3_o6eqq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-141, -41)
+shape = SubResource("RectangleShape2D_6fh2y")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
