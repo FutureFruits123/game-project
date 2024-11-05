@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body):
-	print("hi")
+	get_tree().change_scene_to_file("res://level2.tscn")

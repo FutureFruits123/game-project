@@ -9,3 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_body_entered(body):
+	if body.has_method("move_back"):
+		body.move_back(12, 318)

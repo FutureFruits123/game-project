@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqjruat3sb303"]
+[gd_scene load_steps=13 format=3 uid="uid://bqjruat3sb303"]
 
 [ext_resource type="Texture2D" uid="uid://cx4e1agw5safp" path="res://assets/1.png" id="1_2c0s3"]
 [ext_resource type="Script" path="res://objects/Global.gd" id="1_m4lm6"]
 [ext_resource type="Texture2D" uid="uid://d38ykcbg5v63f" path="res://assets/istockphoto-1139914566-612x612.jpg" id="2_pi281"]
 [ext_resource type="PackedScene" uid="uid://b4wl5a5edj2hq" path="res://objects/player.tscn" id="3_u5wgc"]
 [ext_resource type="PackedScene" uid="uid://le6jbngbhqsd" path="res://objects/star.tscn" id="5_vgu65"]
+[ext_resource type="PackedScene" uid="uid://1d8o0py8nu44" path="res://objects/sirius.tscn" id="7_g4lvd"]
+[ext_resource type="PackedScene" uid="uid://04la1d2k1iig" path="res://objects/arneb.tscn" id="8_0h3h0"]
 [ext_resource type="Script" path="res://level_2.gd" id="8_3tabf"]
+[ext_resource type="PackedScene" uid="uid://duvj44m4dclrl" path="res://objects/respawnVoid.tscn" id="9_7aj8x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mk1nf"]
 texture = ExtResource("1_2c0s3")
@@ -812,11 +815,23 @@ position = Vector2(12, 318)
 position = Vector2(544, 15)
 
 [node name="level2" type="Area2D" parent="."]
-position = Vector2(19, 22)
+position = Vector2(34, 60)
 script = ExtResource("8_3tabf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="level2"]
-position = Vector2(6, 33)
+position = Vector2(-8, -5)
 shape = SubResource("RectangleShape2D_nvyxo")
 
-[connection signal="body_entered" from="level2" to="." method="_on_level_2_body_entered"]
+[node name="Area2D" parent="." instance=ExtResource("7_g4lvd")]
+position = Vector2(786, 317)
+
+[node name="Area2D3" parent="." instance=ExtResource("8_0h3h0")]
+position = Vector2(143, 99)
+
+[node name="Area2D2" parent="." instance=ExtResource("9_7aj8x")]
+position = Vector2(0, 412)
+
+[node name="Area2D4" parent="." instance=ExtResource("7_g4lvd")]
+position = Vector2(1129, 52)
+
+[connection signal="body_entered" from="level2" to="level2" method="_on_body_entered"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://duvj44m4dclrl"]
+
+[ext_resource type="Script" path="res://respawn_void.gd" id="1_p4paw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixn3k"]
+size = Vector2(1150.5, 22)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_p4paw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(575, 11)
+shape = SubResource("RectangleShape2D_ixn3k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

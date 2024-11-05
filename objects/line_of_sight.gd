@@ -10,6 +10,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body):
-	print("hi")
 	if body.has_method("move_back"):
-		print("in line of sight")
+		Global.siriusMoving = 1
+
+		

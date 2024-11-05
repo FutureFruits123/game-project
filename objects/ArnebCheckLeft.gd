@@ -11,6 +11,9 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body):
-	print("hi")
 	if body.has_method("move_back"):
-		print("in left check")
+		Global.arnebDirection = 1
+
+func _on_body_exited(body):
+	if body.has_method("move_back"):
+		Global.arnebDirection = 0
